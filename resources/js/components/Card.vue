@@ -42,6 +42,7 @@ export default {
             this.idx++;
         },
         startQuizMethod(e) {
+            // if event not given
             if (isNaN(e)) {
                 this.categoryId = e.target.value;
             }

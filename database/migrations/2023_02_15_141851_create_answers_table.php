@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->string('answer');
-            $table->foreign('answer_type_id')->references('id')->on('answer_types');
             $table->unsignedBigInteger('answer_type_id');
-            $table->json('incorrect_answers')->nullable();
+            $table->json('answer_list')->nullable();
+            $table->foreign('answer_type_id')->references('id')->on('answer_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('question_category_id')->references('id')->on('question_categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('question_category_id');
             $table->timestamps();
         });
     }

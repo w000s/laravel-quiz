@@ -11,11 +11,21 @@ class Answer extends Model
 
     protected $fillable = [
         'answer',
-        'incorrect_answers',
+        'answer_list',
     ];
 
     public function answerType()
     {
         return $this->hasOne(AnswerType::class);
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'foreign_key');
+    }
+
+    public function category()
+    {
+        return $this->hasOne(QuestionCategory::class);
     }
 }

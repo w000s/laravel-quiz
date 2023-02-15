@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 use App\Models\AnswerType;
 
 /*
@@ -16,11 +16,11 @@ use App\Models\AnswerType;
 |
 */
 
-Route::post('/create', [QuestionController::class, 'createQuestion']);
+Route::post('/create', [QuizController::class, 'createQuestion']);
 
-Route::get('/get-random-question', [QuestionController::class, 'getRandomQuestion']);
+Route::get('/get-random-question', [QuizController::class, 'getRandomQuestion']);
 
-Route::get('/get-question/{id}', [QuestionController::class, 'getQuestion']);
+Route::get('/get-question/{id}', [QuizController::class, 'startQuiz']);
 
 Route::get('/categories', [CategoriesController::class, 'categories']);
 

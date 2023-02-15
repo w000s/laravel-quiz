@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class QuestionController extends Controller
+class QuizController extends Controller
 {
-
     /**
      * Store a new question.
      *
@@ -19,20 +18,18 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getQuestion($id)
+    public function startQuiz($id)
     {
-        $questions = Question::where('question_category_id', $id)->get();
+        $answers = Answer::where('question_category_id', $id)->get();
 
-        dd($questions);
-
-        foreach ($questions as $question) {
-            $question->answers = $this->mergeRandomWithCorrectAnswers($question->answer);
+        foreach ($answers as $value) {
+            $value->answer_list = $this->mergeRandomWithCorrectAnswers($value->answer);
         }
 
-        return response()->json($questions);
+        return response()->json($answers);
     }
 
-    public function getRandomQuestion()
+    public function startRandomQuiz()
     {
         $randomQuestions = Question::all()->random(2);
 
@@ -43,13 +40,18 @@ class QuestionController extends Controller
         return response()->json($randomQuestions);
     }
 
+    // dit op id laten checken
+
     public function mergeRandomWithCorrectAnswers(string $value)
     {
         // pick three random answers that is not the correct answer, and add the correct answer to this array, shuffle the positions so this will be randomized.
-        return Question::pluck('answer')->whereNotIn('answer', $value)->random(3)->push($value)->shuffle();
+        return Answer::pluck('answer')->whereNotIn('answer', $value)->random(3)->push($value)->shuffle();
     }
 
-    public function createQuestion(Request $request)
+
+    // ook answer createn
+
+    public function createQuestionAndAnswer(Request $request)
     {
         $validator = Validator::make(
             $request->all(),

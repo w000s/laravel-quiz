@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\AnswerType;
+use App\Models\Answer;
 use App\Models\QuestionCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,13 +19,12 @@ class QuestionFactory extends Factory
     public function definition()
     {
         $category = QuestionCategory::all()->pluck('id')->toArray();
-        $type = AnswerType::all()->pluck('id')->toArray();
+        $answer = Answer::all()->pluck('id')->toArray();
 
         return [
             'question' => fake()->sentence(),
-            'answer' => fake()->word(),
             'question_category_id' => fake()->randomElement($category),
-            'answer_type_id' => fake()->randomElement($type)
+            'answer_id' => fake()->randomElement($answer)
         ];
     }
 }

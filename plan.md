@@ -7,17 +7,15 @@ Alle vuejs als components maken - DONE
 Back naar category button bij de vragen - DONE
 Add question - DONE
 Retrieve categories ook in quiz card - DONE
+Juiste category vragen krijgen - DONE
 
--   juiste category vragen krijgen - DONE
+-   In quiz ook question model toevoegen en meegeven in de json response
 
--   optioneel veld incorrect answers
+-   check naamgevingen in die merged functie
 
--   Antwoorden model maken
+-   create answer functie rework
 
-    -   antwoord
-    -   merged antwoorden
-    -   antwoordtype
-    -   count van antwoordtype maken (als boolean slechts true or false teruggeven)
+-   optioneel veld incorrect answers in form
 
 -   wanneer je een vraag als boolean instuurt, is het antwoord altijd true of false. Dus dan de count van antwoorden veranderen in twee en true or false.
 

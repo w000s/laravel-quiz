@@ -26,7 +26,7 @@ export default {
                 {{ questions[idx].question }}
             </p>
             <label
-                v-for="answer in questions[idx].answers"
+                v-for="answer in questions[idx].answer_list"
                 :key="answer"
                 :for="answer"
                 class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg cursor-pointer"

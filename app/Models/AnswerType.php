@@ -10,7 +10,7 @@ class AnswerType extends Model
         'type_name',
     ];
 
-    public function question()
+    public function answer()
     {
         return $this->belongsTo(Answer::class, 'foreign_key');
     }
