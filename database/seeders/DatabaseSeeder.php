@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Question;
 use App\Models\Answer;
 use App\Models\QuestionCategory;
+use App\Models\IncorrectAnswer;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         DB::table('answer_types')->insert([['type_name' => 'Select'], ['type_name' => 'Multi select'], ['type_name' => 'Boolean (true or false)']]);
         Answer::factory()->count(12)->create();
         Question::factory()->count(50)->create();
+        IncorrectAnswer::factory()->count(36)->create();
     }
 }

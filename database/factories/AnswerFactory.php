@@ -25,7 +25,6 @@ class AnswerFactory extends Factory
             'answer' => fake()->sentence(),
             'answer_type_id' => fake()->randomElement($type),
             'question_category_id' => fake()->randomElement($category),
-
         ];
     }
 }
