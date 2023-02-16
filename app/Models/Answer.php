@@ -11,7 +11,9 @@ class Answer extends Model
 
     protected $fillable = [
         'answer',
+        'answer_type_id',
         'answer_list',
+        'question_category_id'
     ];
 
     public function answerType()
@@ -21,7 +23,7 @@ class Answer extends Model
 
     public function question()
     {
-        return $this->belongsTo(Question::class, 'foreign_key');
+        return $this->hasOne(Question::class, 'foreign_key');
     }
 
     public function category()

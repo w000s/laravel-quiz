@@ -19,13 +19,14 @@ export default {
             categoryId: 1,
             questions: [],
             categories: [],
+            answers: [],
             answerTypes: [],
         };
     },
     methods: {
         answered(e) {
             this.selectedAnswer = e.target.value;
-            if (this.selectedAnswer == this.questions[this.idx].answer) {
+            if (this.selectedAnswer == this.answers[this.idx].answer) {
                 this.correctAnswers++;
             } else {
                 this.wrongAnswers++;
@@ -46,8 +47,14 @@ export default {
             if (isNaN(e)) {
                 this.categoryId = e.target.value;
             }
-            axios.get(`/get-question/${this.categoryId}`).then((response) => {
+            axios.get(`/get-questions/${this.categoryId}`).then((response) => {
                 this.questions = response.data;
+                this.count = response.data.length;
+            });
+            axios.get(`/get-answers/${this.categoryId}`).then((response) => {
+                this.answers = response.data;
+                console.log("answers", response.data);
+
                 this.count = response.data.length;
             });
             this.idx = 0;
@@ -65,8 +72,8 @@ export default {
             axios
                 .post("/create", {
                     question: questionData.question,
-                    answer: questionData.answer,
                     question_category_id: questionData.category.id,
+                    answer: questionData.answer,
                     answer_type_id: questionData.type.id,
                 })
                 .then((response) => {
@@ -111,6 +118,7 @@ export default {
                     :count="this.count"
                     :idx="this.idx"
                     :questions="this.questions"
+                    :answers="this.answers"
                     :correctAnswers="this.correctAnswers"
                     :wrongAnswers="this.wrongAnswers"
                     :selectedAnswer="this.selectedAnswer"

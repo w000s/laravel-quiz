@@ -19,34 +19,19 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getQuestion($id)
+    public function getCategoryQuestions($id)
     {
         $questions = Question::where('question_category_id', $id)->get();
 
-        dd($questions);
-
-        foreach ($questions as $question) {
-            $question->answers = $this->mergeRandomWithCorrectAnswers($question->answer);
-        }
 
         return response()->json($questions);
     }
 
-    public function getRandomQuestion()
+    public function getRandomQuestions()
     {
         $randomQuestions = Question::all()->random(2);
 
-        foreach ($randomQuestions as $question) {
-            $question->answers = $this->mergeRandomWithCorrectAnswers($question->answer);
-        }
-
         return response()->json($randomQuestions);
-    }
-
-    public function mergeRandomWithCorrectAnswers(string $value)
-    {
-        // pick three random answers that is not the correct answer, and add the correct answer to this array, shuffle the positions so this will be randomized.
-        return Question::pluck('answer')->whereNotIn('answer', $value)->random(3)->push($value)->shuffle();
     }
 
     public function createQuestion(Request $request)

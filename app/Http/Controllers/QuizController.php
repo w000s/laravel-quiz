@@ -18,38 +18,8 @@ class QuizController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function startQuiz($id)
-    {
-        $answers = Answer::where('question_category_id', $id)->get();
 
-        foreach ($answers as $value) {
-            $value->answer_list = $this->mergeRandomWithCorrectAnswers($value->answer);
-        }
-
-        return response()->json($answers);
-    }
-
-    public function startRandomQuiz()
-    {
-        $randomQuestions = Question::all()->random(2);
-
-        foreach ($randomQuestions as $question) {
-            $question->answers = $this->mergeRandomWithCorrectAnswers($question->answer);
-        }
-
-        return response()->json($randomQuestions);
-    }
-
-    // dit op id laten checken
-
-    public function mergeRandomWithCorrectAnswers(string $value)
-    {
-        // pick three random answers that is not the correct answer, and add the correct answer to this array, shuffle the positions so this will be randomized.
-        return Answer::pluck('answer')->whereNotIn('answer', $value)->random(3)->push($value)->shuffle();
-    }
-
-
-    // ook answer createn
+    // Eerst answer validaten en createn, vervolgens deze id gebruiken in Question
 
     public function createQuestionAndAnswer(Request $request)
     {
@@ -57,16 +27,15 @@ class QuizController extends Controller
             $request->all(),
             [
                 'question' => 'required',
+                'question_category_id' => 'required',
                 'answer' => 'required',
-                'answer_type_id' => 'required',
-                'question_category_id' => 'required'
+                'answer_type_id' => 'required'
             ],
             [
                 'question.required' => 'Question is a required field',
-                'answer.required' => 'Answer is a required field',
-                'answer_type_id.required' => 'Answer type is a required field',
                 'question_category_id.required' => 'Question category is a required field',
-
+                'answer.required' => 'Answer is a required field',
+                'answer_type_id.required' => 'Answer type is a required field'
             ]
         );
 
@@ -74,7 +43,9 @@ class QuizController extends Controller
             throw ValidationException::withMessages(['errors' => $validator->errors()->all()]);
         }
 
-        Question::create($request->all());
+        $answer = Answer::create(['answer' => $request->answer, 'answer_type_id' => $request->answer_type_id, 'question_category_id' => $request->question_category_id]);
+
+        Question::create(['question' => $request->question, 'question_category_id' => $request->question_category_id, 'answer_id' => $answer->id]);
 
         return response()->json(['success' => 'Question created succesfully']);
     }

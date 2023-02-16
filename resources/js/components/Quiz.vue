@@ -3,6 +3,7 @@ export default {
     props: [
         "idx",
         "questions",
+        "answers",
         "correctAnswers",
         "wrongAnswers",
         "selectedAnswer",
@@ -21,12 +22,12 @@ export default {
 
 <template>
     <div class="bg-white p-12 rounded-lg shadow-lg w-full mt-8">
-        <div v-if="idx < count && questions.length > 0">
+        <div v-if="idx < count && questions.length > 0 && answers.length > 0">
             <p class="text-2xl font-bold">
                 {{ questions[idx].question }}
             </p>
             <label
-                v-for="answer in questions[idx].answer_list"
+                v-for="answer in answers[idx].answer_list"
                 :key="answer"
                 :for="answer"
                 class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg cursor-pointer"
@@ -40,7 +41,7 @@ export default {
                     },
                     {
                         'bg-green-200':
-                            answer == questions[idx].answer &&
+                            answer == answers[idx].answer &&
                             selectedAnswer != '',
                     })
                 "

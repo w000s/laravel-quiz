@@ -8,22 +8,17 @@ Back naar category button bij de vragen - DONE
 Add question - DONE
 Retrieve categories ook in quiz card - DONE
 Juiste category vragen krijgen - DONE
+In quiz ook question model toevoegen en meegeven in de json response - DONE
 
--   In quiz ook question model toevoegen en meegeven in de json response
-
--   check naamgevingen in die merged functie
-
--   create answer functie rework
+-   create question/answer functie rework
 
 -   optioneel veld incorrect answers in form
+
+rename question category naar category
 
 -   wanneer je een vraag als boolean instuurt, is het antwoord altijd true of false. Dus dan de count van antwoorden veranderen in twee en true or false.
 
 -   als je dus als antwoordtype boolean hebt, krijg je een select button met true of false. Answer type als tweede in de form zetten
-
--   Random antwoorden selecteren op:
-
--   category id
 
 -   antwoord groeperen op antwoordtype (dus boolean, select of radio)
 
