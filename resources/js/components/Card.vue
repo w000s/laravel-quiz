@@ -75,6 +75,7 @@ export default {
                     question_category_id: questionData.category.id,
                     answer: questionData.answer,
                     answer_type_id: questionData.type.id,
+                    answer_list: questionData.incorrectAnswersList,
                 })
                 .then((response) => {
                     console.log(response);

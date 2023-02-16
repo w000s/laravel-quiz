@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Answer;
-use App\Models\QuestionCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -43,7 +42,7 @@ class QuizController extends Controller
             throw ValidationException::withMessages(['errors' => $validator->errors()->all()]);
         }
 
-        $answer = Answer::create(['answer' => $request->answer, 'answer_type_id' => $request->answer_type_id, 'question_category_id' => $request->question_category_id]);
+        $answer = Answer::create(['answer' => $request->answer, 'answer_type_id' => $request->answer_type_id, 'question_category_id' => $request->question_category_id, 'answer_list' => $request->incorrectAnswersList]);
 
         Question::create(['question' => $request->question, 'question_category_id' => $request->question_category_id, 'answer_id' => $answer->id]);
 

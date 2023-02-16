@@ -9,12 +9,12 @@ Add question - DONE
 Retrieve categories ook in quiz card - DONE
 Juiste category vragen krijgen - DONE
 In quiz ook question model toevoegen en meegeven in de json response - DONE
+create question/answer functie rework - DONE
+optioneel veld incorrect answers in form - DONE
 
--   create question/answer functie rework
+-   Maak een incorrect answers model die bij de answer hoort als foreign key, dit dan vervolgens aanmaken bij het versturen van het request.
 
--   optioneel veld incorrect answers in form
-
-rename question category naar category
+-   rename question category naar category
 
 -   wanneer je een vraag als boolean instuurt, is het antwoord altijd true of false. Dus dan de count van antwoorden veranderen in twee en true or false.
 
