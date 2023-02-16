@@ -54,7 +54,7 @@ export default {
             });
             axios.get(`/get-answers/${this.categoryId}`).then((response) => {
                 this.answers = response.data;
-                console.log("answers", response.data);
+                console.log("answers", this.answers);
 
                 this.count = response.data.length;
             });
@@ -69,6 +69,7 @@ export default {
             this.startQuiz = false;
             this.addQuestionScreen = false;
         },
+        //quizdata
         postQuestion(questionData) {
             axios
                 .post("/create", {
@@ -76,6 +77,8 @@ export default {
                     question_category_id: questionData.category.id,
                     answer: questionData.answer,
                     answer_type_id: questionData.type.id,
+                    incorrect_answers_enabled:
+                        questionData.incorrectAnswersEnabled,
                     answer_list: questionData.incorrectAnswersList,
                 })
                 .then((response) => {

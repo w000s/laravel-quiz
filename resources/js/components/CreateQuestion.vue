@@ -10,7 +10,7 @@ export default {
                 answer: "",
                 category: "",
                 type: "",
-                incorrectAnswers: false,
+                incorrectAnswersEnabled: false,
                 incorrectAnswersList: [],
             },
         };
@@ -23,6 +23,8 @@ export default {
                 this.questionData.incorrectAnswersTwo,
                 this.questionData.incorrectAnswersThree
             );
+
+            console.log(this.questionData.incorrectAnswersEnabled);
 
             this.$emit("post-question", this.questionData);
         },
@@ -140,10 +142,10 @@ export default {
                             type="checkbox"
                             id="incorrect_answers"
                             name="incorrect_answers"
-                            v-model="questionData.incorrectAnswers"
+                            v-model="questionData.incorrectAnswersEnabled"
                         />
                         <input
-                            v-if="questionData.incorrectAnswers"
+                            v-if="questionData.incorrectAnswersEnabled"
                             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                             id="incorrect_answers_1"
                             v-model="questionData.incorrectAnswersOne"
@@ -152,7 +154,7 @@ export default {
                             type="text"
                         />
                         <input
-                            v-if="questionData.incorrectAnswers"
+                            v-if="questionData.incorrectAnswersEnabled"
                             class="mt-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                             id="incorrect_answers_2"
                             v-model="questionData.incorrectAnswersTwo"
@@ -161,7 +163,7 @@ export default {
                             type="text"
                         />
                         <input
-                            v-if="questionData.incorrectAnswers"
+                            v-if="questionData.incorrectAnswersEnabled"
                             class="mt-2 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                             id="incorrect_answers_3"
                             v-model="questionData.incorrectAnswersThree"

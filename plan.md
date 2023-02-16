@@ -11,20 +11,19 @@ Juiste category vragen krijgen - DONE
 In quiz ook question model toevoegen en meegeven in de json response - DONE
 create question/answer functie rework - DONE
 optioneel veld incorrect answers in form - DONE
+gaat nu mis bij het aanmaken van questions als er geen incorrect answers worden meegestuurd. We komen in de if dus gaat hij de incorrectanswers vullen met null. - done
 
--   gaat wss nu mis bij het zetten van zowel questions als antwoorden in de reponse.data (response is bijna tegelijk)
+-   in de answercontroller moet gekeken worden naar of er incorrecte antwoorden aan de vraag zitten, zoja gebruik die, zoniet gebruik, random (je kan evt die incorrect answers enabled gebruiken.)
 
--   gaat nu mis bij het aanmaken van questions als er geen incorrect answers worden meegestuurd. We komen in de if dus gaat hij de incorrectanswers vullen met null.
-
--   Maak een incorrect answers model die bij de answer hoort als foreign key, dit dan vervolgens aanmaken bij het versturen van het request.
-
-rename incorrect answers in vue component
+-   rename incorrect answers in vue component
 
 -   rename question category naar category
 
 -   wanneer je een vraag als boolean instuurt, is het antwoord altijd true of false. Dus dan de count van antwoorden veranderen in twee en true or false.
 
 -   als je dus als antwoordtype boolean hebt, krijg je een select button met true of false. Answer type als tweede in de form zetten
+
+-   clear form na insturen
 
 -   antwoord groeperen op antwoordtype (dus boolean, select of radio)
 

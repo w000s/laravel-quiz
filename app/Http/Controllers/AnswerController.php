@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 
-
 class AnswerController extends Controller
 {
     public function getCategoryAnswers($id)
     {
         $categoryAnswers = Answer::where('question_category_id', $id)->get();
 
-
         foreach ($categoryAnswers as $categoryAnswer) {
             $categoryAnswer->answer_list = $this->mergeRandomWithCorrectAnswers($categoryAnswer->answer);
         }
 
-        return response()->json($categoryAnswer);
+        return response()->json($categoryAnswers);
     }
 
     public function getRandomAnswers()
