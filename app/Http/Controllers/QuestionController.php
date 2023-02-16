@@ -23,7 +23,6 @@ class QuestionController extends Controller
     {
         $questions = Question::where('question_category_id', $id)->get();
 
-
         return response()->json($questions);
     }
 

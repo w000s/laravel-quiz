@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Answer;
 
 
@@ -10,13 +9,14 @@ class AnswerController extends Controller
 {
     public function getCategoryAnswers($id)
     {
-        $answers = Answer::where('question_category_id', $id)->get();
+        $categoryAnswers = Answer::where('question_category_id', $id)->get();
 
-        foreach ($answers as $answer) {
-            $answer->answer_list = $this->mergeRandomWithCorrectAnswers($answer->answer);
+
+        foreach ($categoryAnswers as $categoryAnswer) {
+            $categoryAnswer->answer_list = $this->mergeRandomWithCorrectAnswers($categoryAnswer->answer);
         }
 
-        return response()->json($answers);
+        return response()->json($categoryAnswer);
     }
 
     public function getRandomAnswers()

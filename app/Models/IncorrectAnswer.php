@@ -11,5 +11,6 @@ class IncorrectAnswer extends Model
 
     protected $fillable = [
         'incorrect_answer',
+        'answer_id',
     ];
 }

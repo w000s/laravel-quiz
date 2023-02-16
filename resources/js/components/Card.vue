@@ -49,6 +49,7 @@ export default {
             }
             axios.get(`/get-questions/${this.categoryId}`).then((response) => {
                 this.questions = response.data;
+                console.log("questions", response.data);
                 this.count = response.data.length;
             });
             axios.get(`/get-answers/${this.categoryId}`).then((response) => {

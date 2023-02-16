@@ -12,7 +12,13 @@ In quiz ook question model toevoegen en meegeven in de json response - DONE
 create question/answer functie rework - DONE
 optioneel veld incorrect answers in form - DONE
 
+-   gaat wss nu mis bij het zetten van zowel questions als antwoorden in de reponse.data (response is bijna tegelijk)
+
+-   gaat nu mis bij het aanmaken van questions als er geen incorrect answers worden meegestuurd. We komen in de if dus gaat hij de incorrectanswers vullen met null.
+
 -   Maak een incorrect answers model die bij de answer hoort als foreign key, dit dan vervolgens aanmaken bij het versturen van het request.
+
+rename incorrect answers in vue component
 
 -   rename question category naar category
 

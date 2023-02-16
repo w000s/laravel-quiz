@@ -16,14 +16,14 @@ export default {
         };
     },
     methods: {
-        setDataAndCreateQuestion(questionData) {
+        setDataAndCreateQuestion() {
+            this.questionData.incorrectAnswersList = [];
             this.questionData.incorrectAnswersList.push(
                 this.questionData.incorrectAnswersOne,
                 this.questionData.incorrectAnswersTwo,
                 this.questionData.incorrectAnswersThree
             );
 
-            console.log(this.questionData);
             this.$emit("post-question", this.questionData);
         },
     },
