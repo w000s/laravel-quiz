@@ -4,8 +4,8 @@ export default {
         "idx",
         "questions",
         "answers",
-        "correctAnswers",
-        "wrongAnswers",
+        "correctAnswersCount",
+        "wrongAnswersCount",
         "selectedAnswer",
         "count",
         "categoryId",
@@ -87,13 +87,13 @@ export default {
                 <p>
                     Correct Answers:
                     <span class="text-2xl text-green-700 font-bold">{{
-                        correctAnswers
+                        correctAnswersCount
                     }}</span>
                 </p>
                 <p>
                     Wrong Answers:
                     <span class="text-2xl text-red-700 font-bold">{{
-                        wrongAnswers
+                        wrongAnswersCount
                     }}</span>
                 </p>
             </div>

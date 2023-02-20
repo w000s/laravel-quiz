@@ -57,6 +57,7 @@ class QuestionController extends Controller
         }
 
         Question::create($request->all());
+        Question::create($request->all());
 
         return response()->json(['success' => 'Question created succesfully']);
     }

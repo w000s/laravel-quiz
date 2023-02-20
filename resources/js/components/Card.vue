@@ -10,8 +10,8 @@ export default {
         return {
             idx: 0,
             selectedAnswer: "",
-            correctAnswers: 0,
-            wrongAnswers: 0,
+            correctAnswersCount: 0,
+            wrongAnswersCount: 0,
             count: 2,
             startQuiz: false,
             addQuestionScreen: false,
@@ -27,9 +27,9 @@ export default {
         answered(e) {
             this.selectedAnswer = e.target.value;
             if (this.selectedAnswer == this.answers[this.idx].answer) {
-                this.correctAnswers++;
+                this.correctAnswersCount++;
             } else {
-                this.wrongAnswers++;
+                this.wrongAnswersCount++;
             }
         },
         nextQuestion() {
@@ -54,14 +54,13 @@ export default {
             });
             axios.get(`/get-answers/${this.categoryId}`).then((response) => {
                 this.answers = response.data;
-                console.log("answers", this.answers);
-
                 this.count = response.data.length;
+                console.log("answers", response.data);
             });
             this.idx = 0;
             this.selectedAnswer = "";
-            this.correctAnswers = 0;
-            this.wrongAnswers = 0;
+            this.correctAnswersCount = 0;
+            this.wrongAnswersCount = 0;
             this.startQuiz = true;
         },
         getCategories() {
@@ -77,8 +76,6 @@ export default {
                     question_category_id: questionData.category.id,
                     answer: questionData.answer,
                     answer_type_id: questionData.type.id,
-                    incorrect_answers_enabled:
-                        questionData.incorrectAnswersEnabled,
                     answer_list: questionData.incorrectAnswersList,
                 })
                 .then((response) => {
@@ -124,8 +121,8 @@ export default {
                     :idx="this.idx"
                     :questions="this.questions"
                     :answers="this.answers"
-                    :correctAnswers="this.correctAnswers"
-                    :wrongAnswers="this.wrongAnswers"
+                    :correctAnswersCount="this.correctAnswersCount"
+                    :wrongAnswersCount="this.wrongAnswersCount"
                     :selectedAnswer="this.selectedAnswer"
                     :categoryId="this.categoryId"
                 ></quiz>

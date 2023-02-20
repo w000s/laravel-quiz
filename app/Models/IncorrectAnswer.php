@@ -10,7 +10,12 @@ class IncorrectAnswer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'incorrect_answer',
         'answer_id',
+        'incorrect_answer',
     ];
+
+    public function answer()
+    {
+        return $this->belongsTo(Answer::class);
+    }
 }

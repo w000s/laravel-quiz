@@ -31,7 +31,7 @@ class Answer extends Model
         return $this->hasOne(QuestionCategory::class);
     }
 
-    public function incorrectAnswer()
+    public  function incorrectAnswer()
     {
         return $this->hasMany(incorrectAnswer::class, 'foreign_key');
     }

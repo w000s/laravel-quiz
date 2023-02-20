@@ -49,7 +49,7 @@ class QuizController extends Controller
 
         $incorrectAnswers = $request->answer_list;
 
-        if ($request->incorrect_answers_enabled) {
+        if (count($incorrectAnswers) > 0) {
             foreach ($incorrectAnswers as $incorrectAnswer) {
                 IncorrectAnswer::create(['incorrect_answer' => $incorrectAnswer, 'answer_id' => $answer->id]);
             }

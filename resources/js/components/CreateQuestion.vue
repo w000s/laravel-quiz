@@ -9,7 +9,7 @@ export default {
                 question: "",
                 answer: "",
                 category: "",
-                type: "",
+                type: 1,
                 incorrectAnswersEnabled: false,
                 incorrectAnswersList: [],
             },
@@ -18,13 +18,23 @@ export default {
     methods: {
         setDataAndCreateQuestion() {
             this.questionData.incorrectAnswersList = [];
-            this.questionData.incorrectAnswersList.push(
-                this.questionData.incorrectAnswersOne,
-                this.questionData.incorrectAnswersTwo,
-                this.questionData.incorrectAnswersThree
-            );
 
-            console.log(this.questionData.incorrectAnswersEnabled);
+            // if type is boolean, incorrect answer
+            if (this.questionData.type.id == 3) {
+                this.questionData.incorrectAnswersList =
+                    // if the answer given is true, this will automatically make the wrong answer false.
+                    this.booleanAnswerTypes.filter(
+                        (s) => !s.includes(this.questionData.answer)
+                    );
+            } else {
+                this.questionData.incorrectAnswersList.push(
+                    this.questionData.incorrectAnswersOne,
+                    this.questionData.incorrectAnswersTwo,
+                    this.questionData.incorrectAnswersThree
+                );
+            }
+
+            console.log(this.questionData);
 
             this.$emit("post-question", this.questionData);
         },
@@ -128,7 +138,10 @@ export default {
                         />
                     </div>
                 </div>
-                <div class="md:flex md:items-center mb-6">
+                <div
+                    class="md:flex md:items-center mb-6"
+                    v-if="questionData.type.id != 3"
+                >
                     <div class="md:w-1/3">
                         <label
                             class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
