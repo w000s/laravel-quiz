@@ -12,7 +12,7 @@ export default {
             selectedAnswer: "",
             correctAnswersCount: 0,
             wrongAnswersCount: 0,
-            count: 2,
+            count: 1,
             startQuiz: false,
             addQuestionScreen: false,
             successMessage: "",
@@ -49,13 +49,10 @@ export default {
             }
             axios.get(`/get-questions/${this.categoryId}`).then((response) => {
                 this.questions = response.data;
-                console.log("questions", response.data);
-                this.count = response.data.length;
             });
             axios.get(`/get-answers/${this.categoryId}`).then((response) => {
                 this.answers = response.data;
                 this.count = response.data.length;
-                console.log("answers", response.data);
             });
             this.idx = 0;
             this.selectedAnswer = "";

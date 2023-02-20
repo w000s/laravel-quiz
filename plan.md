@@ -35,3 +35,12 @@ als je dus als antwoordtype boolean hebt, krijg je een select button met true of
 -   update delete vragen voor admins (login functionality)
 
 -   Show error validation
+
+    ({
+    'bg-red-200': selectedAnswer != answers[idx].answer,
+    },
+    {
+    'bg-green-200':
+    answer == answers[idx].answer &&
+    selectedAnswer != '',
+    })

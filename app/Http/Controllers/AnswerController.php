@@ -46,7 +46,7 @@ class AnswerController extends Controller
                 $incorrectAnswersArray[] = $incorrectAnswer['incorrect_answer'];
             }
         }
-        // shuffle($incorrectAnswersArray);
+        shuffle($incorrectAnswersArray);
 
         return $incorrectAnswersArray;
     }

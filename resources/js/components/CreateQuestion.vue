@@ -19,13 +19,14 @@ export default {
         setDataAndCreateQuestion() {
             this.questionData.incorrectAnswersList = [];
 
-            // if type is boolean, incorrect answer
+            // if type is boolean, set incorrect answer based on answer given.
             if (this.questionData.type.id == 3) {
                 this.questionData.incorrectAnswersList =
                     // if the answer given is true, this will automatically make the wrong answer false.
                     this.booleanAnswerTypes.filter(
                         (s) => !s.includes(this.questionData.answer)
                     );
+                // type is not boolean
             } else {
                 this.questionData.incorrectAnswersList.push(
                     this.questionData.incorrectAnswersOne,
@@ -33,8 +34,6 @@ export default {
                     this.questionData.incorrectAnswersThree
                 );
             }
-
-            console.log(this.questionData);
 
             this.$emit("post-question", this.questionData);
         },
