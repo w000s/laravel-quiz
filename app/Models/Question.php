@@ -16,6 +16,7 @@ class Question extends Model
         'question',
         'question_category_id',
         'answer_id',
+        'answer_type_id'
     ];
 
 

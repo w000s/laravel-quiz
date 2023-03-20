@@ -45,12 +45,10 @@ class QuizController extends Controller
 
         $answer = Answer::create(['answer' => $request->answer, 'answer_type_id' => $request->answer_type_id, 'question_category_id' => $request->question_category_id]);
 
-        Question::create(['question' => $request->question, 'question_category_id' => $request->question_category_id, 'answer_id' => $answer->id]);
+        Question::create(['question' => $request->question, 'question_category_id' => $request->question_category_id, 'answer_id' => $answer->id, 'answer_type_id' => $request->answer_type_id]);
 
-        $incorrectAnswers = $request->answer_list;
-
-        if (count($incorrectAnswers) > 0) {
-            foreach ($incorrectAnswers as $incorrectAnswer) {
+        if (is_countable($request->answer_list) && count($request->answer_list) > 0) {
+            foreach ($request->answer_list as $incorrectAnswer) {
                 IncorrectAnswer::create(['incorrect_answer' => $incorrectAnswer, 'answer_id' => $answer->id]);
             }
         }

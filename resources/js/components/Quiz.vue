@@ -32,13 +32,18 @@ export default {
                 :for="answer"
                 class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg cursor-pointer"
                 :class="[
-                    answer == answers[idx].answer && selectedAnswer != ''
-                        ? 'bg-green-200'
-                        : 'block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg cursor-pointer',
-                    selectedAnswer != answer && selectedAnswer == ''
-                        ? 'block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg cursor-pointer'
-                        : 'bg-red-200',
-                    ,
+                    ({
+                        'hover:bg-gray-100 cursor-pointer':
+                            selectedAnswer == '',
+                    },
+                    {
+                        'bg-red-200': selectedAnswer == answer,
+                    },
+                    {
+                        'bg-green-200':
+                            answer == answers[idx].answer &&
+                            selectedAnswer != '',
+                    }),
                 ]"
             >
                 <input

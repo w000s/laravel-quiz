@@ -49,6 +49,7 @@ export default {
             }
             axios.get(`/get-questions/${this.categoryId}`).then((response) => {
                 this.questions = response.data;
+                this.count = response.data.length;
             });
             axios.get(`/get-answers/${this.categoryId}`).then((response) => {
                 this.answers = response.data;
@@ -67,6 +68,7 @@ export default {
         },
         //quizdata
         postQuestion(questionData) {
+            console.log(questionData.question);
             axios
                 .post("/create", {
                     question: questionData.question,
@@ -77,6 +79,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response);
+
                     this.successMessage = response.data.success;
                 });
         },
